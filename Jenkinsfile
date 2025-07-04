@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('this is aecound stage') {
             steps {
-                sh mvn package
+                sh 'mvn package'
                 echo "subhash kairam"
                 script {
                     def course = "k8"
