@@ -1,23 +1,22 @@
 pipeline {
     agent any
+    tools {
+        maven 'MAVEN_3.8.8'
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo "this is kairam uma stya subhash"
-
-            }
+        stage ('Build') {
+            echo 
+            sh 'mvn --version'
         }
-        stage ('this is aecound stage') {
+    }
+    stage ('open jdk parts') {
+        tools {
+            jdk 'JDK_17'
             steps {
-                echo "subhash kairam"
-                script {
-                    def course = "k8"
-                    if (course == "k8")
-                    println ("thank you for k8")
-                    else
-                    println ("thank you")
-                }
+                echo "this is the jdk version"
+                sh 'mvn --version'
             }
         }
     }
 }
+
