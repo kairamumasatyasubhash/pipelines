@@ -1,24 +1,16 @@
-pipeline{
-    agent any 
-    environment {
-        USER_NAME = 'subhash'
+pipeline {
+    agent any
+    parameters {
+        string(name: 'user-name', defaultValue: 'subhash', description: 'Enter your name')
     }
-    stages {
-        stage ('UserIsSubhash') {
+        stages {
+        stage ('UserInput') {
             steps {
-                echo "my name is subhash"
-            }
-        }
-        stage ('SubhashKairam') {
-            when {
-                anyOf{
-                    branch 'subhash'
-                    environment name:'USER_NAME', value:'subbu'
+                script {
+                    def userName = params['user-name']
+                    echo "User name is: ${userName}"
                 }
             }
-            steps {
-                echo "kairam uma satya subhash"
-            }
         }
-    } 
+    }
 }
