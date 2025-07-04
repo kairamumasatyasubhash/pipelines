@@ -1,22 +1,18 @@
 pipeline {
     agent any
-    tools {
-        maven 'MAVEN_3.8.8'
+    environment {
+        DEPLOY_TO = 'production'
     }
     stages {
-        stage ('Build') {
-            echo 
-            sh 'mvn --version'
-        }
-    }
-    stage ('open jdk parts') {
-        tools {
-            jdk 'JDK_17'
+        stage ('ProdDeploy') {
+            when {
+                not {
+                    equal excepted :Prod, actual :"${ DEPLOY_TO}"
+                }
+            }
             steps {
-                echo "this is the jdk version"
-                sh 'mvn --version'
+                echo "Deploy production"
             }
         }
     }
 }
-
