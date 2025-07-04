@@ -1,18 +1,15 @@
 pipeline {
     agent any
     environment {
-        DEPLOY_TO = 'production'
+        user-name = 'subhash'
     }
     stages {
-        stage ('ProdDeploy') {
+        stage ('DEPLOYING') {
             when {
-                not {
-                    equals expected :Prod,actual :"${DEPLOY_TO}"
-                }
+                environment name: user-name, value : 'subhash'
             }
-            steps {
-                echo "Deploy production"
-            }
+            echo "print the value"
         }
     }
 }
+
