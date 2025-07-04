@@ -1,15 +1,24 @@
-pipeline {
-    agent any
+pipeline{
+    agent any 
     environment {
-        user-name = 'subhash'
+        USER_NAME = 'subhash'
     }
     stages {
-        stage ('DEPLOYING') {
-            when {
-                environment name: user-name, value : 'subhash'
+        stage ('UserIsSubhash') {
+            steps {
+                echo "my name is subhash"
             }
-            echo "print the value"
         }
-    }
+        stage ('SubhashKairam') {
+            when {
+                anyOf{
+                    branch 'subhash'
+                    environment name:'USER_NAME', value:'subbu'
+                }
+            }
+            steps {
+                echo "kairam uma satya subhash"
+            }
+        }
+    } 
 }
-
